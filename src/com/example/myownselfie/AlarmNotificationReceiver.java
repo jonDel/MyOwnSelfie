@@ -14,13 +14,14 @@ import android.util.Log;
 
 public class AlarmNotificationReceiver extends BroadcastReceiver {
 	// Notification ID to allow for future updates
+	private static final int MAIN_CLASS_INTENT_CODE = 0;
 	private static final int MY_NOTIFICATION_ID = 1;
 	private static final String TAG = "AlarmNotificationReceiver";
 
 	// Notification Text Elements
 	private final CharSequence tickerText = "Are You Playing Angry Birds Again!";
-	private final CharSequence contentTitle = "A Kind Reminder";
-	private final CharSequence contentText = "Get back to studying!!";
+	private final CharSequence contentTitle = "Time for your daily selfie!";
+	private final CharSequence contentText = "Let's take a fucking idiotic moronic selfie!!";
 
 	// Notification Action Elements
 	private Intent mNotificationIntent;
@@ -28,7 +29,7 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
 
 	// Notification Sound and Vibration on Arrival
 	private final Uri soundURI = Uri
-			.parse("android.resource://course.examples.Alarms.AlarmCreate/"
+			.parse("android.resource://com.example.myOwnSelfie/"
 					+ R.raw.alarm_rooster);
 	private final long[] mVibratePattern = { 0, 200, 200, 300 };
 
@@ -36,7 +37,9 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 
 		// The Intent to be used when the user clicks on the Notification View
+		//mNotificationIntent = new Intent(context, TakingASelfie.class);
 		mNotificationIntent = new Intent(context, MainActivity.class);
+		mNotificationIntent.putExtra( "SendCode", "Recebeu intent baby");
 
 		// The PendingIntent that wraps the underlying Intent
 		mContentIntent = PendingIntent.getActivity(context, 0,
